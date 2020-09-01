@@ -1,7 +1,11 @@
 # PYNQ Juliabrot Fractal Factory
 ## A Xilinx FPGA accelerated near real-time interactive Python Jupyter Lab Notebook
 ## Compatible with the Avnet PYNQ Ultra96 v1/v2 and Xilinx PYNQ Z1/Z2 development boards
-U96 execution is faster than the Z1/Z2 but otherwise the features are the same for both platforms.
+I can give live educational presentations that go into more detail about these types of fractals, this application and how it all works.  Contact me if you are interested.
+
+To demonstrate capabilities, several full-rez up to 4K sized images are available: [click here](https://bit.ly/3lBTm1S)
+
+The U96 board execution is faster than the Z1/Z2 but otherwise the features are the same for both platforms.
 
 ![fractal1](./large-images/f6m.png) ![fractal2](./large-images/f4m.png)
 
