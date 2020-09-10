@@ -62,6 +62,8 @@ sudo reboot
 * Use mouse click to start selection, click again to compute area within selection
 * Enjoy!
 
+![interface](./large-images/gui.gif)
+
 ## Mandelbrot / Julia FPGA Compute Engine Attributes  
 
 Up to 16K x 16K grid sizes  
