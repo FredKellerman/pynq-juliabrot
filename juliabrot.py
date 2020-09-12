@@ -257,10 +257,9 @@ class JuliabrotTile :
 # Depends on pynq, must only be used locally on a PYNQ board/system
 class Juliabrot :
     def __init__(self, deepMode) :
-    #  64 - 6x kernels @ 64bits, 95 - 4x kernels @ 95 bits, 160 - 1x kernels @ 160bits (all @ 275MHz)
-    #  95 is the fastest, 160 the highest precision, 64 should be fastest but HLS added extra pipeline
-    #  stages and slowed it down (maybe will fix someday)
-    # PYNQ Z1-Z2 boards have 1 overlay for 3x kernels @ 64 bits ~ 150MHz
+    #  64 - 6x kernels @ 64bits, 95 - 4x kernels @ 95 bits, 160 - 1x kernels @ 160bits (@ 300MHz)
+    #  64 is the fastest, 160 the highest precision
+    # PYNQ Z1-Z2 boards have 1 overlay for 3x kernels @ 64 bits @ 125MHz
         if os.environ['BOARD'] == 'Ultra96' :
             if deepMode == 64 :
                 overlay_name = './overlays/juliabrot96b.bit'
