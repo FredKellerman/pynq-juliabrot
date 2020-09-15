@@ -3,7 +3,7 @@
 ## Compatible with the Avnet PYNQ Ultra96 v1/v2 and Xilinx PYNQ Z1/Z2 development boards
 I can give live educational presentations that go into more detail about these types of fractals, this application and how it all works.  Contact me if you are interested.
 
-**To demonstrate potential several full-rez up to 4K sized images are available: [click here](https://bit.ly/3lBTm1S)**
+**To demonstrate potential several full-rez up to 16K sized images are available: [click here](https://bit.ly/3lBTm1S)**
 
 The U96 board execution is faster than the Z1/Z2 but otherwise the features are the same for both platforms.
 
@@ -53,7 +53,7 @@ sudo reboot
 
 * If you used the Jupyter Lab console for setup, after rebooting **you must refresh your web browser before proceeding**
 * If not already open, in your browser go to `http://<your board IP address>/lab`
-* Use the Jupyter Lab Folder/File Explorer and under the folder `pynq-juliabrot` open `local-juliabrot-zoom.ipynb`
+* Use the Jupyter Lab Folder/File Explorer and under the folder `pynq-juliabrot` open `juliabrot-zoom.ipynb`
 * Execute the notebook
 * After executing `jui.draw_roaming_ui()` you should see:
 
@@ -75,7 +75,6 @@ Max Iterations up to 4,294,967,296
 | 96b_mid      | 95-bits  | 4 | 300MHz | 320 |
 | 96b_deep     | 160-bits | 1 | 214MHz | 248 |
 | z1 (z2 also) | 64-bits  | 3 | 125MHz | 150 |
-&nbsp;  
 
 **Note: at this time the Python front end used for initial conditions only supports up to 80-bit precision, future plans are to remove this limitation.  Due to dev board memory limitations, images larger than 4K for coloring and formating should be completed off target on a PC.**  
 
