@@ -40,16 +40,17 @@ from datetime import datetime
 import zlib
 import json
 
+# This can be used to determine if this module is not being run on a PYNQ host
+#  Nothing is currently implemented to do that though!
 try :
-    from pynq import Overlay, Xlnk
+    from pynq import Overlay
     import axidma # This is a pynq derived class also
 except ImportError :
     Overlay = None
-    Xlnk = None
 
 try :
-    if os.environ['BOARD'] != 'Ultra96' and os.environ['BOARD'] != 'Pynq-Z1' and os.environ['BOARD'] != 'Pynq-Z2':
-        print("Only for Ultra96, Pynq-Z1 or Pynq-Z2 Board")
+    if os.environ['BOARD'] != 'ZUBoard_1CG' and os.environ['BOARD'] != 'Ultra96' and os.environ['BOARD'] != 'Pynq-Z1' and os.environ['BOARD'] != 'Pynq-Z2':
+        print("Only for ZUBoard-1CG, Ultra96, Pynq-Z1 or Pynq-Z2 Board")
         exit(1)
 except :
     pass
@@ -256,6 +257,7 @@ class JuliabrotTile :
 
 # Depends on pynq, must only be used locally on a PYNQ board/system
 class Juliabrot :
+    
     def __init__(self, deepMode) :
     #  64 - 6x kernels @ 64bits, 95 - 4x kernels @ 95 bits, 160 - 1x kernels @ 160bits (@ 300MHz)
     #  64 is the fastest, 160 the highest precision
@@ -269,10 +271,11 @@ class Juliabrot :
                 overlay_name = './overlays/juliabrot96b_deep.bit'
             else :
                 overlay_name = './overlays/juliabrot96b_mid.bit'
+        elif os.environ['BOARD'] == 'ZUBoard_1CG' :
+            overlay_name = './overlays/juliabrotzu1.bit'
         else :
             # Should work for Z1 and Z2 (doesn't use any external I/O)
             overlay_name = './overlays/juliabrotz1.bit'
-
         overlay = Overlay(overlay_name)
         self._X = []
         self._Y = []
@@ -287,9 +290,9 @@ class Juliabrot :
         self._colorize = overlay.juliabrot_colorize
         # Turn on iter stream output and set modes, this will go away in the future (if I have the time),
         #  these settings will then come from the streaming config instead 1 per requested grid
-        self._colorize.write(self._colorize.register_map.inStreamEnables_V.address, 0x1)
-        self._colorize.write(self._colorize.register_map.inMaxIter_V.address, 1000)
-        self._colorize.write(self._colorize.register_map.inMode_V.address, 0x0)
+        self._colorize.write(self._colorize.register_map.inStreamEnables.address, 0x1)
+        self._colorize.write(self._colorize.register_map.inMaxIter.address, 1000)
+        self._colorize.write(self._colorize.register_map.inMode.address, 0x0)
         
     def _config(self, in_tile, pktSize=-1) :
         '''
@@ -381,19 +384,19 @@ class Juliabrot :
         print(self._read_nrow())
     
     def _read_xMax(self) :
-        return self._jb.read(self._jb.register_map.xMaxOut_V.address)
+        return self._jb.read(self._jb.register_map.xMaxOut.address)
     
     def _read_yMax(self) :
-        return self._jb.read(self._jb.register_map.yMaxOut_V.address)
+        return self._jb.read(self._jb.register_map.yMaxOut.address)
     
     def _read_nrow(self) :
-        return self._jb.read(self._jb.register_map.nRowOut_V.address)
+        return self._jb.read(self._jb.register_map.nRowOut.address)
     
     def _read_ncol(self) :
-        return self._jb.read(self._jb.register_map.nColOut_V.address)
+        return self._jb.read(self._jb.register_map.nColOut.address)
     
     def _read_N(self) :
-        return self._jb.read(self._jb.register_map.nkOut_V.address)
+        return self._jb.read(self._jb.register_map.nkOut.address)
     
     def _longdouble_to_int32_quad(self, x) :
         b = np.longdouble(x).tobytes()

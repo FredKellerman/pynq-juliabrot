@@ -32,17 +32,17 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-from pynq import Xlnk
 from pynq.lib.dma import DMA
+from pynq import allocate
 import numpy as np
 
 class CmaBufferFactory():
     def __init__(self):
-        self._xlnk = Xlnk()
+        pass
         
     def make_cma_buf(self, shape, data_type):
         assert shape != [], RuntimeError
-        return self._xlnk.cma_array(shape=shape, cacheable=1, dtype=data_type)
+        return allocate(shape=shape, cacheable=1, dtype=data_type)
     
     def del_cma_buf(self, cma_buf):
         cma_buf.close()
