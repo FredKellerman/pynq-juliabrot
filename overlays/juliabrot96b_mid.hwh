@@ -5185,16 +5185,16 @@
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_CTRL" NAME="Reg" RANGE="65536" USAGE="register">
           <REGISTERS>
-            <REGISTER NAME="xMaxOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of xMaxOut_V"/>
+            <REGISTER NAME="xMaxOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of xMaxOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="xMaxOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of xMaxOut_V"/>
+                <FIELD NAME="xMaxOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of xMaxOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5206,7 +5206,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="xMaxOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of xMaxOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of xMaxOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="20"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5235,16 +5235,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="yMaxOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of yMaxOut_V"/>
+            <REGISTER NAME="yMaxOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of yMaxOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="24"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="yMaxOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of yMaxOut_V"/>
+                <FIELD NAME="yMaxOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of yMaxOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5256,7 +5256,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="yMaxOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of yMaxOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of yMaxOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="28"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5285,16 +5285,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="nRowOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of nRowOut_V"/>
+            <REGISTER NAME="nRowOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of nRowOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="32"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="nRowOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of nRowOut_V"/>
+                <FIELD NAME="nRowOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of nRowOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5306,7 +5306,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="nRowOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of nRowOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of nRowOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="36"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5335,16 +5335,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="nColOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of nColOut_V"/>
+            <REGISTER NAME="nColOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of nColOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="40"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="nColOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of nColOut_V"/>
+                <FIELD NAME="nColOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of nColOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5356,7 +5356,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="nColOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of nColOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of nColOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="44"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5385,16 +5385,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="inputPrecisionOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inputPrecisionOut_V"/>
+            <REGISTER NAME="inputPrecisionOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inputPrecisionOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="48"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="inputPrecisionOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inputPrecisionOut_V"/>
+                <FIELD NAME="inputPrecisionOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inputPrecisionOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5406,7 +5406,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="inputPrecisionOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of inputPrecisionOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of inputPrecisionOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="52"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5435,16 +5435,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="internalPrecisionOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of internalPrecisionOut_V"/>
+            <REGISTER NAME="internalPrecisionOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of internalPrecisionOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="56"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="internalPrecisionOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of internalPrecisionOut_V"/>
+                <FIELD NAME="internalPrecisionOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of internalPrecisionOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5456,7 +5456,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="internalPrecisionOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of internalPrecisionOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of internalPrecisionOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="60"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5485,16 +5485,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="nkOut_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of nkOut_V"/>
+            <REGISTER NAME="nkOut">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of nkOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="64"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="nkOut_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of nkOut_V"/>
+                <FIELD NAME="nkOut">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of nkOut"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="read-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5506,7 +5506,7 @@
               </FIELDS>
             </REGISTER>
             <REGISTER NAME="nkOut_V_ctrl">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of nkOut_V"/>
+              <PROPERTY NAME="DESCRIPTION" VALUE="Control signal of nkOut"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="68"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="read-only"/>
@@ -5798,16 +5798,16 @@
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="read-write" INTERFACE="s_axi_CTRL" NAME="Reg" RANGE="65536" USAGE="register">
           <REGISTERS>
-            <REGISTER NAME="inMode_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inMode_V"/>
+            <REGISTER NAME="inMode">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inMode"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="16"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="inMode_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inMode_V"/>
+                <FIELD NAME="inMode">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inMode"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5818,16 +5818,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="inMaxIter_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inMaxIter_V"/>
+            <REGISTER NAME="inMaxIter">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inMaxIter"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="24"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="inMaxIter_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inMaxIter_V"/>
+                <FIELD NAME="inMaxIter">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inMaxIter"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5838,16 +5838,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="inReScale_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inReScale_V"/>
+            <REGISTER NAME="inReScale">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inReScale"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="32"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="inReScale_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inReScale_V"/>
+                <FIELD NAME="inReScale">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inReScale"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
@@ -5858,16 +5858,16 @@
                 </FIELD>
               </FIELDS>
             </REGISTER>
-            <REGISTER NAME="inStreamEnables_V">
-              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inStreamEnables_V"/>
+            <REGISTER NAME="inStreamEnables">
+              <PROPERTY NAME="DESCRIPTION" VALUE="Data signal of inStreamEnables"/>
               <PROPERTY NAME="ADDRESS_OFFSET" VALUE="40"/>
               <PROPERTY NAME="SIZE" VALUE="32"/>
               <PROPERTY NAME="ACCESS" VALUE="write-only"/>
               <PROPERTY NAME="IS_ENABLED" VALUE="true"/>
               <PROPERTY NAME="RESET_VALUE" VALUE="0"/>
               <FIELDS>
-                <FIELD NAME="inStreamEnables_V">
-                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inStreamEnables_V"/>
+                <FIELD NAME="inStreamEnables">
+                  <PROPERTY NAME="DESCRIPTION" VALUE="Bit 31 to 0 Data signal of inStreamEnables"/>
                   <PROPERTY NAME="ADDRESS_OFFSET" VALUE="0"/>
                   <PROPERTY NAME="ACCESS" VALUE="write-only"/>
                   <PROPERTY NAME="MODIFIED_READ_VALUES" VALUE=""/>
