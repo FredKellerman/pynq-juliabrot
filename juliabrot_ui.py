@@ -76,27 +76,27 @@ def display_info(in_canvases, in_grid) :
     in_canvases[drawing_layer].clear()
     y_spacing = 30
     y_pos = y_spacing
-    in_canvases[drawing_layer].fill_text('ul X: ' + str(in_grid.settings.ulX), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('ul X: ' + str(in_grid.settings.ulX), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing 
-    in_canvases[drawing_layer].fill_text('ul Y: ' + str(in_grid.settings.ulY), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('ul Y: ' + str(in_grid.settings.ulY), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing 
-    in_canvases[drawing_layer].fill_text('lr X: ' + str(in_grid.settings.lrX), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('lr X: ' + str(in_grid.settings.lrX), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing 
-    in_canvases[drawing_layer].fill_text('lr Y: ' + str(in_grid.settings.lrY), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('lr Y: ' + str(in_grid.settings.lrY), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing 
-    in_canvases[drawing_layer].fill_text('cX: ' + str(in_grid.settings.cX), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('cX: ' + str(in_grid.settings.cX), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing 
-    in_canvases[drawing_layer].fill_text('cY: ' + str(in_grid.settings.cY), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('cY: ' + str(in_grid.settings.cY), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing
-    in_canvases[drawing_layer].fill_text('sizeX: ' + str(int(in_grid.settings.sizeX)), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('sizeX: ' + str(int(in_grid.settings.sizeX)), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing
-    in_canvases[drawing_layer].fill_text('sizeY: ' + str(int(in_grid.settings.sizeY)), in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text('sizeY: ' + str(int(in_grid.settings.sizeY)), in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing 
     if in_grid.settings.mandelbrot_mode == True :
         m_str = 'Mode: Mandelbrot'
     else :
         m_str = 'Mode: Julia'
-    in_canvases[drawing_layer].fill_text(m_str, in_canvases[drawing_layer].size[0]/2+30, y_pos)
+    in_canvases[drawing_layer].fill_text(m_str, in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing
     '''
     if in_grid.settings.ulX == in_grid.settings.lrX :
@@ -112,7 +112,7 @@ def show_canvas(in_canvases, in_tiles, in_offset=(0,0)) :
         save_style = canvases[interaction_layer].fill_style
         canvases[interaction_layer].fill_style = '#aaaa00'
         in_canvases[interaction_layer].clear()
-        in_canvases[interaction_layer].fill_text('Status: Coloring', in_canvases[drawing_layer].size[0]/2+30, in_canvases[drawing_layer].size[1]-status_offset)
+        in_canvases[interaction_layer].fill_text('Status: Coloring', in_canvases[drawing_layer].width/2+30, in_canvases[drawing_layer].height-status_offset)
         for in_tile in in_tiles :
             rgb = color_data(in_tile)
             in_canvases[background_layer].put_image_data(rgb, in_offset[0] + in_tile.limits[0], in_offset[1] + in_tile.limits[1])
@@ -127,7 +127,7 @@ def draw_fractal(in_canvases, in_tiles, in_progress_report = False) :
     save_style = canvases[interaction_layer].fill_style
     canvases[interaction_layer].fill_style = '#aa4400'
     in_canvases[interaction_layer].clear()
-    in_canvases[interaction_layer].fill_text('Status: Computing', in_canvases[drawing_layer].size[0]/2+30, in_canvases[drawing_layer].size[1]-status_offset)
+    in_canvases[interaction_layer].fill_text('Status: Computing', in_canvases[drawing_layer].width/2+10, in_canvases[drawing_layer].height-status_offset)
     for in_tile in in_tiles :
         juliabrot.compute(in_tile, in_progress_report)
     in_canvases[interaction_layer].clear()
@@ -237,11 +237,11 @@ def bup_button_handler(x) :
 def save_button_handler(x) :
     canvases[interaction_layer].fill_style = '#00aa00'
     canvases[interaction_layer].clear()
-    canvases[interaction_layer].fill_text('Saving settings', canvases[drawing_layer].size[0]/2+30, canvases[drawing_layer].size[1]- status_offset)
+    canvases[interaction_layer].fill_text('Saving settings', canvases[drawing_layer].width/2+30, canvases[drawing_layer].height-status_offset)
     filename_prefix = jgrid.settings.save_json(catalog_path, color_list.value, color_list.label, hue_slider.value, sat_slider.value, val_slider.value, modulo_slider.value, picker1.value)
     save_png(catalog_path + filename_prefix + ".png")
     canvases[interaction_layer].clear()
-    canvases[interaction_layer].fill_text('Settings saved', canvases[drawing_layer].size[0]/2+30, canvases[drawing_layer].size[1] - status_offset)
+    canvases[interaction_layer].fill_text('Settings saved', canvases[drawing_layer].width/2+30, canvases[drawing_layer].height-status_offset)
 
 def color_data(in_tile) :
     choice = color_list.value
@@ -438,7 +438,7 @@ def draw_roaming_ui() :
     lry_select = jgrid.settings.sizeY
     lrx_select = jgrid.settings.sizeX
     canvases = MultiCanvas(3, width=jgrid.settings.sizeX*2.5, height=jgrid.settings.sizeY+75)
-    canvases[drawing_layer].font = '25px serif'
+    canvases[drawing_layer].font = '15px serif'
     canvases[drawing_layer].fill_style = '#aaaaaa'
     canvases[drawing_layer].line_width = 3
     canvases[interaction_layer].font = '35px serif'
