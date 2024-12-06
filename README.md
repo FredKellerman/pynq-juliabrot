@@ -24,7 +24,7 @@ The U96 board execution is faster than the Z1/Z2 but otherwise the features are 
 
 Enter the commands below in the console to complete the installation, installing ipycanvas will take a while.
 
-* **Install ipycanvas (must use v0.4.7)**
+* **For PYNQ v2.5 only: Install ipycanvas (must use v0.4.7)**
 
 ``` shell
 sudo pip3 install ipycanvas==0.4.7
@@ -32,6 +32,11 @@ sudo jupyter labextension install @jupyter-widgets/jupyterlab-manager ipycanvas@
 sudo jupyter lab build --minimize=False
 sudo jupyter labextension install ipycanvas@0.4.7 --minimize=False
 
+```
+
+* **For PYNQ v2.6:**
+``` shell
+Instructions coming soon!
 ```
 
 * **Next, install the notebook itself**
