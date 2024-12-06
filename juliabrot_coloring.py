@@ -34,6 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import numpy as np
 from juliabrot import JuliabrotTile, JuliabrotGrid
+from cv2 import cvtColor, COLOR_HSV2RGB, COLOR_HSV2BGR, COLOR_RGB2HSV
 
 def rgb_iter_max(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors = None) :
     if in_colors == None :
@@ -59,7 +60,6 @@ def rgb_iter_max(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors = None) :
     rgb[data[:,:] <= (max_iter/grad_factor-1), 2] = pix_mod2 * pix[data[:,:] <= (max_iter/grad_factor-1)]
     return rgb
 
-from skimage.color import hsv2rgb, rgb2hsv
 def color_log(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors = None) :
     if in_colors == None :
         in_colors = []
@@ -69,7 +69,7 @@ def color_log(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors = None) :
     data = in_tile.data.iterations
     mandel_rgb = int(in_colors[0][1::],16)
     hsv = np.empty(shape=(data.shape[0], data.shape[1], 3), dtype=np.float32)
-    hsv[:,:,0] = h
+    hsv[:,:,0] = h * 360
     hsv[:,:,1] = s
     l_data = np.log10(1+(data[:,:]%modulo))
     l_max = np.max(l_data)
@@ -77,10 +77,9 @@ def color_log(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors = None) :
     color[0,0,2] = (mandel_rgb & 0xff) / 255
     color[0,0,1] = ((mandel_rgb >> 8) & 0xff) / 255
     color[0,0,0] = ((mandel_rgb >> 16) & 0xff) / 255
-    color_hsv = rgb2hsv(color)
+    color_hsv = cvtColor(color, COLOR_RGB2HSV)
     hsv[data[:,:] == max_iter, :] = color_hsv
-    rgb = hsv2rgb(hsv)
-    rgb[:,:,:] *= 255
+    rgb = (cvtColor(hsv, COLOR_HSV2RGB) * 255).astype(np.uint8)
     return rgb
 
 def color_rainbow(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors=None) :
@@ -92,18 +91,16 @@ def color_rainbow(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors=None) :
     mandel_rgb[0,0,2] = (rgb & 0xff) / 255
     mandel_rgb[0,0,1] = ((rgb >> 8) & 0xff) / 255
     mandel_rgb[0,0,0] = ((rgb >> 16) & 0xff) / 255
-    mandel_hsv = rgb2hsv(mandel_rgb)
+    mandel_hsv = cvtColor(mandel_rgb, COLOR_RGB2HSV)
     data = in_tile.data.iterations
     max_iter = int(in_tile.grid.max_iterations)
     color_hsv = np.empty(shape=(data.shape[0], data.shape[1], 3), dtype=np.float32)
-    color_hsv[:,:] = mandel_hsv
     inv_mod = 1 / modulo
-    #h = (.5 + h) % 1.0
-    color_hsv[:,:,0] = (h + (data[:,:] % modulo) * inv_mod ) % 1.0
+    color_hsv[:,:,0] = 360 * ((h + (data[:,:] % modulo) * inv_mod ) % 1.0) # cv2 treats h as 0-360 degrees!
     color_hsv[:,:,1] = s
     color_hsv[data[:,:] < max_iter, 2] = v
     color_hsv[data[:,:] == max_iter, :] = mandel_hsv
-    rgb = hsv2rgb(color_hsv) * 255
+    rgb = (cvtColor(color_hsv, COLOR_HSV2RGB) * 255).astype(np.uint8)
     return rgb
 
 def color_rainbow2(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors=None) :
@@ -115,19 +112,17 @@ def color_rainbow2(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors=None) :
     mandel_rgb[0,0,2] = (rgb & 0xff) / 255
     mandel_rgb[0,0,1] = ((rgb >> 8) & 0xff) / 255
     mandel_rgb[0,0,0] = ((rgb >> 16) & 0xff) / 255
-    mandel_hsv = rgb2hsv(mandel_rgb)
+    mandel_hsv = cvtColor(mandel_rgb, COLOR_RGB2HSV)
     data = in_tile.data.iterations
     max_iter = int(in_tile.grid.max_iterations)
     color_hsv = np.empty(shape=(data.shape[0], data.shape[1], 3), dtype=np.float32)
-    color_hsv[:,:] = mandel_hsv
     inv_mod = 1 / modulo
-    #h = (.6 + h) % 1.0
-    color_hsv[:,:,0] = (h + (data[:,:] % modulo) * inv_mod ) % 1.0
-    color_hsv[:,:,1] = .3 + (s + (data[:,:] % modulo) * inv_mod ) % 1.0
-    color_hsv[color_hsv[:,:,1] > 1.0,1] = 1.0
+    color_hsv[:,:,0] = 360 * ((h + (data[:,:] % modulo) * inv_mod ) % 1.0)
+    color_hsv[:,:,1] = (.3 + (s + (data[:,:] % modulo) * inv_mod ) % 1.0)
+    color_hsv[color_hsv[:,:,1] > 1.0, 1] = s
     color_hsv[data[:,:] < max_iter, 2] = v
     color_hsv[data[:,:] == max_iter, :] = mandel_hsv
-    rgb = hsv2rgb(color_hsv) * 255
+    rgb = (cvtColor(color_hsv, COLOR_HSV2RGB) * 255).astype(np.uint8)
     return rgb
 
 def color_classic(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors=None) :
@@ -139,19 +134,19 @@ def color_classic(in_tile, h=1.0, s=1.0, v=1.0, modulo=255, in_colors=None) :
     mandel_rgb[0,0,2] = (rgb & 0xff) / 255
     mandel_rgb[0,0,1] = ((rgb >> 8) & 0xff) / 255
     mandel_rgb[0,0,0] = ((rgb >> 16) & 0xff) / 255
-    mandel_hsv = rgb2hsv(mandel_rgb)
+    mandel_hsv = cvtColor(mandel_rgb, COLOR_RGB2HSV)
     data = in_tile.data.iterations
     max_iter = in_tile.grid.max_iterations
     color_hsv = np.empty(shape=(data.shape[0], data.shape[1], 3), dtype=np.float32)
-    #h = (.6 + h) % 1.0
-    color_hsv[:,:,0] = (h + (data[:,:] % modulo) * (4/max_iter)) % 1.0
+    color_hsv[:,:,0] = 360 * ((h + (data[:,:] % modulo) * (4/max_iter)) % 1.0)
     color_hsv[:,:,1] = s
     color_hsv[data[:,:] < max_iter, 2] = v
     color_hsv[data[:,:] == max_iter,:] = mandel_hsv
-    rgb = hsv2rgb(color_hsv) * 255
+    rgb = (cvtColor(color_hsv, COLOR_HSV2RGB) * 255).astype(np.uint8)
     return rgb
 
 # TBD - not working
+'''
 def color_range(in_tile, h=1.0, s=1.0, v=1.0, in_colors=None) :
     if in_colors == None :
         in_colors = []
@@ -198,3 +193,4 @@ def color_range(in_tile, h=1.0, s=1.0, v=1.0, in_colors=None) :
     color_hsv[data[:,:] == max_iter,:] = mandel_hsv
     rgb = hsv2rgb(color_hsv) * 255
     return rgb
+'''
