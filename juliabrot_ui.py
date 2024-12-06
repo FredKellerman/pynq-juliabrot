@@ -73,6 +73,7 @@ def remote_setup(host, user, password, keyfile=None) :
 #  Canvas actions section
 #########################################################
 def display_info(in_canvases, in_grid) :
+    global color_it
     in_canvases[drawing_layer].clear()
     y_spacing = 30
     y_pos = y_spacing
@@ -96,6 +97,7 @@ def display_info(in_canvases, in_grid) :
         m_str = 'Mode: Mandelbrot'
     else :
         m_str = 'Mode: Julia'
+    m_str = m_str + (' Color' if color_it == True else ' BW')
     in_canvases[drawing_layer].fill_text(m_str, in_canvases[drawing_layer].width/2.2+10, y_pos)
     y_pos += y_spacing
     '''
@@ -108,20 +110,19 @@ def display_info(in_canvases, in_grid) :
     '''
 
 def show_canvas(in_canvases, in_tiles, in_offset=(0,0)) :
-    if color_it == True :
-        save_style = canvases[interaction_layer].fill_style
-        canvases[interaction_layer].fill_style = '#aaaa00'
-        in_canvases[interaction_layer].clear()
+    global color_it
+    save_style = canvases[interaction_layer].fill_style
+    canvases[interaction_layer].fill_style = '#aaaa00'
+    in_canvases[interaction_layer].clear()
+    if color_it == True:
         in_canvases[interaction_layer].fill_text('Status: Coloring', in_canvases[drawing_layer].width/2+30, in_canvases[drawing_layer].height-status_offset)
-        for in_tile in in_tiles :
-            rgb = color_data(in_tile)
-            in_canvases[background_layer].put_image_data(rgb, in_offset[0] + in_tile.limits[0], in_offset[1] + in_tile.limits[1])
-        in_canvases[interaction_layer].clear()
-        canvases[interaction_layer].fill_style = save_style
     else :
-        in_canvases[interaction_layer].clear()
-        for in_tile in in_tiles :
-            in_canvases[background_layer].put_image_data(in_tile.data.iterations, in_offset[0] + in_tile.limits[0], in_offset[1] + in_tile.limits[1])
+        in_canvases[interaction_layer].fill_text('Status: Coloring BW', in_canvases[drawing_layer].width/2+30, in_canvases[drawing_layer].height-status_offset)
+    in_canvases[interaction_layer].clear()
+    canvases[interaction_layer].fill_style = save_style
+    for in_tile in in_tiles :
+        rgb = color_data(in_tile, color_it)
+    in_canvases[background_layer].put_image_data(rgb, in_offset[0] + in_tile.limits[0], in_offset[1] + in_tile.limits[1])
 
 def draw_fractal(in_canvases, in_tiles, in_progress_report = False) :
     save_style = canvases[interaction_layer].fill_style
@@ -243,25 +244,27 @@ def save_button_handler(x) :
     canvases[interaction_layer].clear()
     canvases[interaction_layer].fill_text('Settings saved', canvases[drawing_layer].width/2+30, canvases[drawing_layer].height-status_offset)
 
-def color_data(in_tile) :
+def color_data(in_tile, color_mode) :
     choice = color_list.value
+    sat_val = sat_slider.value if color_mode == True else 0
     if choice == 1 :
-        rgb = jcolor.color_rainbow(in_tile, hue_slider.value, sat_slider.value, val_slider.value, modulo_slider.value, [picker1.value])
+        rgb = jcolor.color_rainbow(in_tile, hue_slider.value, sat_val, val_slider.value, modulo_slider.value, [picker1.value])
     elif choice == 2 :
-        rgb = jcolor.color_classic(in_tile, hue_slider.value, sat_slider.value, val_slider.value, modulo_slider.value, [picker1.value])
+        rgb = jcolor.color_classic(in_tile, hue_slider.value, sat_val, val_slider.value, modulo_slider.value, [picker1.value])
     elif choice == 3 :
-        rgb = jcolor.color_log(in_tile, hue_slider.value, sat_slider.value, val_slider.value, modulo_slider.value, [picker1.value])
+        rgb = jcolor.color_log(in_tile, hue_slider.value, sat_val, val_slider.value, modulo_slider.value, [picker1.value])
     elif choice == 4 :
-        rgb = jcolor.rgb_iter_max(in_tile, hue_slider.value, sat_slider.value, val_slider.value, modulo_slider.value, [picker1.value])
+        rgb = jcolor.rgb_iter_max(in_tile, hue_slider.value, sat_val, val_slider.value, modulo_slider.value, [picker1.value])
     elif choice == 5 :
-        rgb = jcolor.color_rainbow2(in_tile, hue_slider.value, sat_slider.value, val_slider.value, modulo_slider.value, [picker1.value])
+        rgb = jcolor.color_rainbow2(in_tile, hue_slider.value, sat_val, val_slider.value, modulo_slider.value, [picker1.value])
         #elif choice == 6 :
-        #    rgb = jcolor.color_range(in_tile, hue_slider.value, sat_slider.value, val_slider.value, [picker1.value, picker2.value, picker2.value])
+        #    rgb = jcolor.color_range(in_tile, hue_slider.value, sat_val, val_slider.value, [picker1.value, picker2.value, picker2.value])
     else :
-        rgb = jcolor.color_rainbow(in_tile)
+        rgb = jcolor.color_rainbow(in_tile, hue_slider.value, sat_val, val_slider.value, modulo_slider.value, [picker1.value])
     return rgb
 
 def save_png(filename, x_width=120) :
+    global color_it
     grid = copy.deepcopy(jgrid)
     grid.tile_list[0].data = None
     scale = x_width / grid.tile_list[0].sizeX
@@ -269,7 +272,7 @@ def save_png(filename, x_width=120) :
     y = int(grid.tile_list[0].sizeY * scale)
     grid.set_size(x, y)
     tile = juliabrot.compute(grid.tile_list[0])
-    tmp = color_data(tile)
+    tmp = color_data(tile, color_it)
     rgb = np.empty(shape=(y,x,3), dtype=np.uint8)
     rgb[:,:,0] = tmp[:,:,2]
     rgb[:,:,1] = tmp[:,:,1]
@@ -305,12 +308,10 @@ def undo_button_handler(x) :
     if len(jgrid_history) > 1 :
         jgrid_history.pop()  # Throw away where we're currently at
         jgrid = jgrid_history.pop()
-        print(jgrid.settings.max_iterations)
         s1_val = jgrid.settings.max_iterations
         if iter_slider.value != s1_val :
             # The change will force a draw_fractal
             iter_slider.value = s1_val
-            print(s1_val)
         else :
             display_info(canvases, jgrid)
             draw_fractal(canvases, jgrid.tile_list)
@@ -325,6 +326,7 @@ def color_button_handler(x) :
     global color_it
     color_it = not color_it
     show_canvas(canvases, jgrid.tile_list)
+    display_info(canvases, jgrid)
 
 def zoom_button_handler(x) :
     global jgrid
