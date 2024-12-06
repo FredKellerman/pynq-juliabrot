@@ -34,7 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import numpy as np
 import os
-from ipycanvas import Canvas, MultiCanvas
+from ipycanvas import Canvas, MultiCanvas, hold_canvas
 from ipywidgets import interact, Button, ColorPicker, FloatLogSlider, IntSlider, FloatSlider, link, AppLayout, HBox, VBox, Dropdown
 from ipycanvas import MultiCanvas, hold_canvas
 from juliabrot import JuliabrotGrid, JuliabrotTile, Juliabrot, JuliabrotGridSettings
