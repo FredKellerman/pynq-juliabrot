@@ -118,11 +118,10 @@ def show_canvas(in_canvases, in_tiles, in_offset=(0,0)) :
         in_canvases[interaction_layer].fill_text('Status: Coloring', in_canvases[drawing_layer].width/2+30, in_canvases[drawing_layer].height-status_offset)
     else :
         in_canvases[interaction_layer].fill_text('Status: Coloring BW', in_canvases[drawing_layer].width/2+30, in_canvases[drawing_layer].height-status_offset)
-    in_canvases[interaction_layer].clear()
     canvases[interaction_layer].fill_style = save_style
     for in_tile in in_tiles :
         rgb = color_data(in_tile, color_it)
-    in_canvases[background_layer].put_image_data(rgb, in_offset[0] + in_tile.limits[0], in_offset[1] + in_tile.limits[1])
+        in_canvases[background_layer].put_image_data(rgb, in_offset[0] + in_tile.limits[0], in_offset[1] + in_tile.limits[1])
 
 def draw_fractal(in_canvases, in_tiles, in_progress_report = False) :
     save_style = canvases[interaction_layer].fill_style
